@@ -1,7 +1,10 @@
 # cache
 __pycache__/
 
+# virutal env
 .venv
+
+# debugging
 .vscode
 
 # testing
