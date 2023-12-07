@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}TJP | API{% endblock %}
+
+{% block content %}
+<h3 class="body-text py-2 mx-4">Belum ada data yang bisa ditampilkan</h3>
+<p class="form-label custom-text custom-label mx-4">Silahkan tambahkan data dari hasil response API di bawah ini
+    *</p>
+<form action="" class="mx-4">
+    <label for="ta_response_api" class="form-label custom-text custom-label">Response API</label>
+    {% if response_text %}
+    <textarea class="form-control" id="ta_response_api" rows="10">{{ response_text }}</textarea>
+    {% else %}
+    <textarea class="form-control" id="ta_response_api" rows="10"></textarea>
+    {% endif %}
+    <button type="button" id="simpan_btn" class="btn custom-button mt-3 py-2">Simpan data</button>
+    <p class="mt-2">
+        <small class="custom-label">
+            *Jika response error, tunggu beberapa saat sebelum me-refresh halaman
+        </small>
+    </p>
+</form>
+{% endblock %}

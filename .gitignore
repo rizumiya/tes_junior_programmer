@@ -1,0 +1,10 @@
+# cache
+__pycache__/
+
+.venv
+.vscode
+
+# testing
+test/
+tes.py
+test.json
