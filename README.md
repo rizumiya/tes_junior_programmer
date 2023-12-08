@@ -18,13 +18,17 @@ library python
 
 clone repository ini  
 `git clone https://github.com/rizumiya/tes_junior_programmer.git`  
+
 install seluruh library yang diperlukan  
 `pip install -r requirements.txt`  
+
 jalankan aplikasi xampp > mysql  
+
 buat database baru dengan nama `tjp`  
 
 #### Alternatif untuk cara diatas
 clone repository ini  
 `git clone https://github.com/rizumiya/tes_junior_programmer.git`  
+
 jalankan file `autorun.bat`
 
