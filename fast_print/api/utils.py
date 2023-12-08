@@ -7,12 +7,13 @@ from status.models import Status
 
 
 NOW = datetime.datetime.now()
+WITA = NOW + datetime.timedelta(hours=1)
 
 def get_username(base_name: str) -> str : 
     """Membuat username untuk API"""
-    tgl = NOW.strftime('%d%m%y')
-    jam = str(int(NOW.strftime('%H')) + 1).zfill(2)
-    username = base_name + tgl + "C" + str(jam)
+    tgl = WITA.strftime('%d%m%y')
+    jam = str(WITA.strftime('%H')).zfill(2)
+    username = base_name + tgl + "C" + jam
     return username
 
 
