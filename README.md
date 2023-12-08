@@ -1,6 +1,6 @@
 ## Tes Junior Programmer
 
-proyek ini adalah hasil pengerjaan dari tes junior programmer yang diselenggarakan oleh PT Fast Print dalam rangka tes perekrutan karyawan
+Proyek ini adalah hasil pengerjaan dari tes junior programmer yang diselenggarakan oleh PT Fast Print dalam rangka tes perekrutan karyawan
 
 ## Instalasi
 
