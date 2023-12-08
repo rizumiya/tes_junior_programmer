@@ -26,7 +26,7 @@ jalankan aplikasi xampp > mysql
 
 buat database baru dengan nama `tjp`  
 
-#### Alternatif untuk cara diatas
+### Alternatif untuk cara diatas
 clone repository ini  
 `git clone https://github.com/rizumiya/tes_junior_programmer.git`  
 
