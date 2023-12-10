@@ -1,0 +1,94 @@
+{% extends 'admin_base.html' %}
+
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'base_styles.css' %}">
+
+{% endblock %}
+
+
+{% block new_content %}
+
+<h2>Data Status</h2>
+
+<div class="form-container">
+    <form method="post" class="real_form">
+        {% csrf_token %}
+        {% if 'nama_status' in errors %}
+        <p class="error-message">{{ errors.nama_status.0 }}</p>
+        {% endif %}
+        <input type="text" name="nama_status" id="nama_status" autocomplete="off" placeholder="Nama status" {% if selected_data %} value="{{ selected_data.nama_status }}" {% endif %}>
+        <input type="hidden" name="id_status" id="id_status" {% if selected_data %} value="{{ selected_data.id_status }}" {% endif %}>
+        <button type="submit">Simpan</button>
+        {% if message %}
+        <p class="success-message">{{ message }}</p>
+        {% endif %}
+    </form>
+
+</div>
+
+<div class="container-table">
+    <table id="produk">
+        <tr>
+            <th>No</th>
+            <th>Nama status</th>
+            <th>Aksi</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td style="text-align: center;">{{ forloop.counter }}</td>
+            <td>{{ item.nama_status}}</td>
+            <td style="text-align: center;"><a href="{% url 'ubah_status' item.id_status %}">✏️</a> | <a href="#" onclick="confirmDelete({{ item.id_status }})">🗑️</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+    function confirmDelete(id_status) {    
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+        const deleteUrl = "{% url 'hapus_status' 0 %}".replace('0', id_status)
+        if (confirm('Yakin ingin menghapus status ini?')) {
+            fetch(deleteUrl, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRFToken': csrftoken
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    alert('Tidak dapat menghapus status karena masih ada data yang terkait')
+                    throw new Error('Gagal menghapus status + ada error dibagian cors')
+                }
+                return response.json()
+            })
+            .then(data => {
+                if (data.error) {
+                    alert(data.error)
+                } else {
+                    alert(data.message)
+                }
+                location.reload()
+            })
+            .catch(error => {
+                console.error('Terjadi kesalahan:', error)
+            })
+        }
+    }
+
+</script>
+
+    
+</script>
+
+{% endblock %}

@@ -1,0 +1,9 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">HOME</a></li>
+        {% if data %}
+        <li><a href="{% url 'produk' %}">ADMIN PLAYGROUND</a></li>
+        {% endif %}
+        <li><a href="{% url 'api' %}">API</a></li>
+    </ul>
+</nav>

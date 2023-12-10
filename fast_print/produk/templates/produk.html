@@ -1,0 +1,106 @@
+{% extends 'admin_base.html' %}
+
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'base_styles.css' %}">
+
+{% endblock %}
+
+
+{% block new_content %}
+
+<h2>Data Produk</h2>
+
+<div class="form-container">
+    <form method="post" class="real_form">
+        {% csrf_token %}
+        {% if 'nama_produk' in errors %}
+        <p class="error-message">{{ errors.nama_produk.0 }}</p>
+        {% endif %}
+        <input type="text" name="nama_produk" id="nama_produk" autocomplete="off" placeholder="Nama Produk" {% if selected_data %} value="{{ selected_data.nama_produk }}" {% endif %}>
+        {% if 'harga' in errors %}
+        <p class="error-message">{{ errors.harga.0 }}</p>
+        {% endif %}
+        <input type="number" name="harga" id="harga" placeholder="Harga" {% if selected_data %} value="{{ selected_data.harga }}" {% endif %}>
+        <select name="kategori_id" id="kategori_id">
+            {% for item in kategori %}
+            <option value="{{ item.id_kategori }}" {% if item.id_kategori == selected_data.kategori_id.id_kategori %} selected {% endif %}>{{ item.nama_kategori }}</option>
+            {% endfor %}
+        </select>
+        <select name="status_id" id="status_id">
+            {% for item in status %}
+            <option value="{{ item.id_status }}" {% if item.id_status == selected_data.status_id.id_status %} selected {% endif %}>{{ item.nama_status }}</option>
+            {% endfor %}
+        </select>
+        <input type="hidden" name="id_produk" id="id_produk" {% if selected_data %} value="{{ selected_data.id_produk }}" {% endif %}>
+        <button type="submit">Simpan</button>
+        {% if message %}
+        <p class="success-message">{{ message }}</p>
+        {% endif %}
+    </form>
+
+</div>
+
+<div class="container-table">
+
+    <form method="post" class="tampil">
+        {% csrf_token %}
+        <select name="show" id="show">
+            <option value="all" {% if tampil_rad == 'all' %} selected {% endif %}>Seluruh data</option>
+            {% for item in status %}
+            <option value="{{ item.nama_status }}" {% if tampil_rad == item.nama_status %} selected {% endif %}>Data yang {{ item.nama_status }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Tampilkan</button>
+    </form>
+
+    <table id="produk">
+        <colgroup>
+            <col width="5%">
+            <col width="43%">
+            <col width="10%">
+            <col width="20%">
+            <col width="15%">
+            <col width="7%">
+        </colgroup>
+        <tr>
+            <th>No</th>
+            <th>Nama Produk</th>
+            <th>Harga</th>
+            <th>Kategori</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td style="text-align: center;">{{ forloop.counter }}</td>
+            <td>{{ item.nama_produk}}</td>
+            <td>Rp. {{ item.harga}}</td>
+            <td>{{ item.kategori_id.nama_kategori}}</td>
+            <td style="text-align: center;">{{ item.status_id.nama_status}}</td>
+            <td><a href="{% url 'ubah_produk' item.id_produk %}">✏️</a> | <a href="#" onclick="confirmDelete({{ item.id_produk }})">🗑️</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+
+
+<script>
+    function confirmDelete(id_produk) {
+        if (confirm('Yakin ingin menghapus produk ini?')) {
+            window.location.href = "{% url 'hapus_produk' 0 %}".replace('0', id_produk);
+        }
+    }
+</script>
+
+{% endblock %}

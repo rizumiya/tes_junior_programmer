@@ -1,0 +1,65 @@
+{% extends 'admin_base.html' %}
+
+{% load static %}
+
+{% block style %}
+
+<link rel="stylesheet" href="{% static 'styles.css' %}">
+<link rel="stylesheet" href="{% static 'base_styles.css' %}">
+
+{% endblock %}
+
+
+{% block new_content %}
+
+<h2>Data Kategori</h2>
+
+<div class="form-container">
+    <form method="post" class="real_form">
+        {% csrf_token %}
+        {% if 'nama_kategori' in errors %}
+        <p class="error-message">{{ errors.nama_kategori.0 }}</p>
+        {% endif %}
+        <input type="text" name="nama_kategori" id="nama_kategori" autocomplete="off" placeholder="Nama Kategori" {% if selected_data %} value="{{ selected_data.nama_kategori }}" {% endif %}>
+        <input type="hidden" name="id_kategori" id="id_kategori" {% if selected_data %} value="{{ selected_data.id_kategori }}" {% endif %}>
+        <button type="submit">Simpan</button>
+        {% if message %}
+        <p class="success-message">{{ message }}</p>
+        {% endif %}
+    </form>
+
+</div>
+
+<div class="container-table">
+    <table id="produk">
+        <tr>
+            <th>No</th>
+            <th>Nama Kategori</th>
+            <th>Aksi</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td style="text-align: center;">{{ forloop.counter }}</td>
+            <td>{{ item.nama_kategori}}</td>
+            <td style="text-align: center;"><a href="{% url 'ubah_kategori' item.id_kategori %}">✏️</a> | <a href="#" onclick="confirmDelete({{ item.id_kategori }})">🗑️</a></td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}
+
+
+{% block script %}
+
+<script>
+    function confirmDelete(id_kategori) {
+        if (confirm('Jika Anda menghapus kategori ini, semua data yang terkain akan terhapus, lanjutkan?')) {
+            window.location.href = "{% url 'hapus_kategori' 0 %}".replace('0', id_kategori);
+        }
+    }
+</script>
+
+{% endblock %}

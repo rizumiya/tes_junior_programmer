@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}TJP | Admin Playground{% endblock %}
+
+{% block header %}
+
+<link rel="stylesheet" href="{% static 'base_styles.css' %}">
+
+{% block style %}{% endblock %}
+
+{% endblock %}
+
+
+{% block body %}
+<div class="container-button">
+    <a class="content-menu" href="{% url 'produk' %}">Data Produk</a>
+    <a class="content-menu" href="{% url 'kategori' %}">Data Kategori</a>
+    <a class="content-menu" href="{% url 'status' %}">Data Status</a>
+</div>
+
+{% block new_content %}{% endblock %}
+
+{% block edit_content %}{% endblock %}
+
+{% endblock %}
+
+
+{% block script %}{% endblock %}

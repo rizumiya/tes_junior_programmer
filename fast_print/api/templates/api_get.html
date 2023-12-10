@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}TJP | API{% endblock %}
+
+
+{% block header %}
+
+<style>
+    form {
+        display: block;
+        padding: 20px 0;
+    }
+
+    label {
+        margin-right: 10px;
+    }
+
+    #ta_response{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #7F55E6;
+        padding: 10px 20px;
+        font-size: 1rem;
+        cursor: pointer;
+        border: none;
+        color: #fff;
+    }
+
+    button:hover {
+        background-color: #6836e7;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+
+{% if data %}
+
+<h1>Data API sudah ditambahkan</h1>
+<p>Sudah bisa akses menu Admin Playground</p>
+
+{% else%}
+
+<h1>Data API</h1>
+<p>Silahkan tambahkan data API di bawah ini</p>
+
+<form method="post">
+    {% csrf_token %}
+    <textarea name="ta_response" id="ta_response" rows="30">{{ response }}</textarea>
+    <button type="submit">Tambahkan</button>
+</form>
+
+
+{% endif %}
+
+{% endblock %}

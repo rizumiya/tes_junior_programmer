@@ -2,6 +2,8 @@ import json
 import hashlib
 import datetime
 
+from rest_framework.serializers import ModelSerializer
+
 from kategori.models import Kategori
 from status.models import Status
 
@@ -9,37 +11,52 @@ from status.models import Status
 NOW = datetime.datetime.now()
 WITA = NOW + datetime.timedelta(hours=1)
 
-def get_username(base_name: str) -> str : 
-    """Membuat username untuk API"""
+def get_username(basename:str) -> str :
+    """Membuat username berdasarkan format yang ditentukan"""
     tgl = WITA.strftime('%d%m%y')
-    jam = str(WITA.strftime('%H')).zfill(2)
-    username = base_name + tgl + "C" + jam
+    jam = WITA.strftime('%H').zfill(2)
+    username = basename + tgl + "C" + jam
     return username
 
 
-def get_password(base_name:str) -> str : 
-    """Membuat password untuk API"""
-    tgl = NOW.strftime('%d-%m-%y')
-    password = base_name + str(tgl)
-    return hashlib.md5(password.encode()).hexdigest()
+def get_password(basename:str) -> str :
+    """Membuat password berdasarkan format yang ditentukan"""
+    tgl = WITA.strftime('%d-%m-%y')
+    enc_pass = basename + tgl
+    password = hashlib.md5(enc_pass.encode()).hexdigest()
+    return password
 
 
-def normalize_api_data(response) -> list:
-    """Khusus mengambil nilai 'data' dari API"""
-    response = response['response']
-    data = json.loads(response)
-    data = data.get('data')
+def normalize_api_data(json_data):
+    """Hanya mengambil nilai 'data'"""
+    data = json.loads(json_data)
+    data = data['data']
     return data
 
 
-def get_or_create_kategori(data_kategori) -> Kategori:
-    """Ambil atau tambah data kategori baru"""
-    kategori, _ = Kategori.objects.get_or_create(nama_kategori=data_kategori)
+def get_or_create_kategori(nama_kategori) -> Kategori:
+    kategori, _ = Kategori.objects.get_or_create(nama_kategori=nama_kategori)
     return kategori
 
 
-def get_or_create_status(data_status) -> Status:
-    """Ambil atau tambah data status baru"""
-    status, _ = Status.objects.get_or_create(nama_status=data_status)
+def get_or_create_status(nama_status) -> Status:
+    status, _ = Status.objects.get_or_create(nama_status=nama_status)
     return status
 
+
+def cek_validitas(serializer: ModelSerializer) -> ModelSerializer:
+    """Fungsi khusus untuk cek validasi serializer"""
+    if serializer.is_valid():
+        serializer.save()
+        message = 'Data berhasil ditambahkan'
+        status = True
+    else:
+        message = serializer.errors
+        status = False
+
+    content = {
+        'message': message,
+        'status': status
+    }
+
+    return content

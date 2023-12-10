@@ -2,13 +2,20 @@
 
 Proyek ini adalah hasil pengerjaan dari tes junior programmer yang diselenggarakan oleh PT Fast Print dalam rangka tes perekrutan karyawan
 
+Teknologi:
+- Bahasa Pemrograman: Python
+- Framework: Django, Djangorestframework
+- Database: MySQL
+- Integrasi API data produk milik PT Fast Print
+
+
 ## Instalasi
 
-software
+Software
 - xampp  
 - python  
 
-library python
+Library Python
 - django  
 - djangorestframework  
 - requests  
@@ -16,19 +23,21 @@ library python
 
 ### Langka-langkah
 
-clone repository ini  
+Clone repository ini  
 `git clone https://github.com/rizumiya/tes_junior_programmer.git`  
 
-install seluruh library yang diperlukan  
+Install seluruh library yang diperlukan  
 `pip install -r requirements.txt`  
 
-jalankan aplikasi xampp > mysql  
+Jalankan aplikasi Xampp > MySQL  
 
-buat database baru dengan nama `tjp`  
+Buat database baru dengan nama `tjp`  
 
-### Alternatif untuk cara diatas
-clone repository ini  
+Buka CMD dan jalankan `python manage.py migrate` juga `python manage.py runserver`
+
+### Alternatif untuk cara diatas (khusus OS Windows)
+Clone repository ini  
 `git clone https://github.com/rizumiya/tes_junior_programmer.git`  
 
-jalankan file `autorun.bat`
+Jalankan file (klik 2x) `autorun.bat`
 

@@ -8,6 +8,4 @@ __pycache__/
 .vscode
 
 # testing
-test/
-tes.py
-test.json
+testing/

@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Tes Junior Programming{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    {% block header %}{% endblock %}
+</head>
+
+<body>
+    <div class="container">
+        {% include 'navbar.html' %}
+        
+        <main>
+            <div class="container-body">
+                {% block body %} {% endblock %}
+            </div>
+        </main>
+
+    </div>
+
+    {% block script %}{% endblock %}
+</body>
+
+</html>

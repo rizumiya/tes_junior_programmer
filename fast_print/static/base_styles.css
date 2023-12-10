@@ -1,0 +1,170 @@
+.form-container {
+    width: 40%;
+    margin: 0 auto;
+}
+
+form.real_form {
+    overflow-x: auto;
+    margin: 0 auto;
+}
+
+input,
+select,
+button {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input[type="checkbox"]{
+    background-color: #d83434;
+    display: inline-flex;
+    padding: 50px;
+}
+
+.real-form button {
+    background-color: #6836e7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.real-form button:hover {
+    background-color: #7F55E6;
+}
+
+form.tampil {
+    display: inline-flex;
+}
+
+#show {
+    display: inline-block;
+    margin-right: 20px;
+    width: auto;
+    padding-right: 80px;
+}
+
+form.tampil button {
+    width: auto;
+    padding: 0 22px;
+}
+
+p.error-message {
+    text-shadow: 0 0 7px white;
+    letter-spacing: .1cap;
+    margin-bottom: 5px;
+    text-align: center;
+    font-weight: 900;
+    color: #d83434;
+    font-size: 12px;
+}
+
+p.success-message {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(70, 225, 59);
+    letter-spacing: .1cap;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    color: aliceblue;
+    font-weight: 900;
+    font-size: 12px;
+}
+
+form {
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+
+
+.content-menu {
+    background-color: #6836e7;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    float: left;
+    margin-right: 20px;
+}
+
+.container-button a {
+    text-decoration: none;
+    color: #d8e7f1;
+}
+
+.container-button a:hover {
+    background-color: #7F55E6;
+}
+
+.container-button::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+#produk {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+#produk td,
+#produk th {
+    border: 1px solid #d8e7f1;
+    padding: 8px;
+}
+
+#produk tr:nth-child(even) {
+    background-color: #55B5E6;
+}
+
+#produk th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #7F55E6;
+    color: #d8e7f1;
+}
+
+
+select {
+    background-color: #55B5E6;
+    padding: 10px 20px;
+    box-shadow: none;
+    color: #d8e7f1;
+    font-size: 1rem;
+    border: none;
+}
+
+option {
+    background-color: #5588E5;
+    padding: 10px 0;
+}
+
+label {
+    margin-right: 10px;
+}
+
+button {
+    background-color: #6836e7;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+button:hover {
+    background-color: #7F55E6;
+}
+
+a {
+    text-decoration: none;
+}
