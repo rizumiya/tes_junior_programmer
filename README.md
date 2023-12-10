@@ -41,3 +41,6 @@ Clone repository ini
 
 Jalankan file (klik 2x) `autorun.bat`
 
+### Video dokumentasi
+
+[Link Google Drive](https://drive.google.com/file/d/1kDDx27zYzw7gqNxZFLC8BuGgrMbzkZXp/view?usp=sharing)
